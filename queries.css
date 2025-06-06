@@ -1,0 +1,81 @@
+@media (max-width: 544px) {
+  /* Body Layout for Mobile */
+  body {
+    grid-template-columns: 1fr; /* Single column */
+    grid-template-rows: auto auto 1fr auto; /* Nav, Main, Main, Footer */
+    grid-template-areas:
+      "nav"
+      "main"
+      "main"
+      "footer";
+    column-gap: 0; /* Remove gap between grid items on mobile to have full width for nav/main */
+    padding: 0 1rem; /* Maintain horizontal padding */
+  }
+
+  /* ---------- NAV MOBILE STYLES ---------- */
+  nav {
+    position: fixed; /* Crucial for mobile overlay */
+    top: 1rem;
+    left: 1rem; /* Aligns with body padding */
+    width: calc(100vw - 2rem); /* Matches body width */
+    height: calc(64px + 2rem); /* Collapsed height (profile height + padding) */
+    overflow: hidden; /* Hides content when collapsed */
+    z-index: 1000; /* Ensures nav is on top of other content */
+    /* Transitions are already on nav in style.css */
+    border: 2px solid green;
+  }
+
+  .profile .toggle-btn {
+    display: block; /* Show toggle button on mobile */
+  }
+
+  /* Hamburger to Cross Icon Transformation */
+  .nav-expanded .toggle-btn::before {
+    transform: translate(-50%, -50%) rotate(45deg); /* First bar becomes part of cross */
+    box-shadow: none; /* Hide the middle bar */
+  }
+
+  .nav-expanded .toggle-btn::after {
+    transform: translate(-50%, -50%) rotate(-45deg); /* Second bar becomes part of cross */
+  }
+
+  /* Expanded Navigation State */
+  .nav-expanded {
+    height: calc(
+      100vh - 2rem
+    ); /* Expands to full viewport height minus padding */
+    overflow-y: auto; /* Allow scrolling for expanded content */
+    /* Remove any animation properties here, as transitions handle it */
+  }
+
+  /* Fade out/slide out internal nav items when collapsed */
+  nav:not(.nav-expanded) .site-nav,
+  nav:not(.nav-expanded) .social-accounts {
+    opacity: 0;
+    pointer-events: none; /* Prevents clicks on hidden items */
+    transform: translateY(-20px); /* Slightly slide up when disappearing */
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out; /* Faster transition for hiding */
+  }
+
+  /* Fade out hr when collapsed */
+  nav:not(.nav-expanded) hr {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+  }
+
+  /* ---------- MAIN MOBILE STYLES ---------- */
+  main {
+    /* Adjusted margin-top to account for fixed nav */
+    margin-top: calc(
+      64px + 2rem + 1rem
+    ); /* Nav height + nav top/bottom padding + gap */
+    /* When nav expands, it will overlay main content. If you want main to push down,
+       you'd need JS to dynamically set main's margin-top based on expanded nav height.
+       For a cleaner CSS approach, overlay is standard for mobile menus. */
+  }
+
+  /* ---------- FOOTER MOBILE STYLES ---------- */
+  footer {
+    /* No specific changes for footer here unless layout changes */
+  }
+}

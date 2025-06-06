@@ -1,0 +1,244 @@
+/* Universal Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root Variables for Colors */
+:root {
+  /* Whites */
+  --white-100: rgb(255, 255, 255);
+  --white-97: rgb(247, 247, 247);
+  --white-90: rgb(230, 230, 230);
+  --white-80: rgb(204, 204, 204);
+
+  /* Greens */
+  --green-98: rgb(245, 255, 249);
+  --green-45: rgb(0, 230, 99);
+  --green-35: rgb(0, 179, 77);
+
+  /* Oranges */
+  --orange-98: rgb(255, 253, 245);
+  --orange-50: rgb(255, 183, 0);
+
+  /* Blues */
+  --blue-98: rgb(245, 253, 255);
+  --blue-50: rgb(0, 208, 255);
+
+  /* Purples */
+  --purple-98: rgb(251, 245, 255);
+  --purple-65: rgb(190, 77, 255);
+
+  /* Reds */
+  --red-98: rgb(255, 245, 247);
+  --red-50: rgb(255, 0, 76);
+
+  /* Blacks */
+  --black-30: rgb(77, 77, 77);
+  --black-0: rgb(0, 0, 0);
+
+  /* RGB versions - keep if you plan to use rgba() */
+  --white-100-rgb: 255, 255, 255;
+  --white-97-rgb: 247, 247, 247;
+  --white-90-rgb: 230, 230, 230;
+  --white-80-rgb: 204, 204, 204;
+  --black-30-rgb: 77, 77, 77;
+  --black-0-rgb: 0, 0, 0;
+}
+
+/* Body Layout */
+body {
+  background-color: var(--white-97);
+  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr; /* Default desktop layout */
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "nav main"
+    "nav footer";
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+/* ---------- NAV ---------- */
+nav {
+  background-color: var(--white-100);
+  grid-area: nav;
+  border-radius: 12px;
+  position: sticky; /* Stays in place when scrolling */
+  top: 1rem;
+  align-self: start; /* Sticks to the top of its grid area */
+  height: calc(100vh - 2rem); /* Full height on desktop */
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding: 1.2rem;
+  overflow-y: auto; /* Allows scrolling if content exceeds height */
+  /* Transition for smooth mobile expansion/collapse */
+  transition: height 0.3s ease-out, width 0.3s ease-out, top 0.3s ease-out,
+    left 0.3s ease-out, transform 0.3s ease-out; /* Added transform for potential future use */
+}
+
+nav .profile {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "pic name toggle-btn"
+    "pic tagline toggle-btn";
+  align-items: center; /* Vertically aligns items in their rows */
+  column-gap: 0.4rem;
+  padding: 0.2rem 0; /* Vertical padding for profile content */
+}
+
+nav .profile .pic {
+  grid-area: pic;
+  height: 48px;
+  width: 48px;
+  border-radius: 999px; /* Makes it a perfect circle */
+  background: blue; /* Placeholder background */
+}
+
+.profile .pic img {
+  height: 48px;
+  width: 48px;
+  border-radius: 999px;
+}
+
+.profile .name {
+  grid-area: name;
+  font-size: 1rem;
+  font-weight: 600;
+  align-self: end;
+  white-space: nowrap; /* Prevents text from wrapping prematurely */
+  overflow: hidden; /* Hides overflowing text */
+  text-overflow: ellipsis; /* Adds "..." for overflowing text */
+}
+
+.profile .tagline {
+  grid-area: tagline;
+  font-size: 0.85rem;
+  align-self: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile .toggle-btn {
+  grid-area: toggle-btn;
+  height: 32px;
+  width: 32px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--white-100);
+  cursor: pointer;
+  display: none; /* Hidden by default on desktop */
+  position: relative; /* For icon positioning */
+  overflow: hidden; /* Ensure only one icon is visible */
+}
+
+/* Toggle button icon - Hamburger (default) */
+.profile .toggle-btn::before,
+.profile .toggle-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 2px;
+  background-color: var(--black-30);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.profile .toggle-btn::before {
+  transform: translate(-50%, calc(-50% - 6px)); /* Top bar */
+}
+
+.profile .toggle-btn::after {
+  transform: translate(-50%, calc(-50% + 6px)); /* Bottom bar */
+}
+
+/* Middle bar (if needed for typical hamburger) - often just a background of the button itself */
+/* For a 3-bar icon, you could use a span inside or another pseudo-element */
+/* Let's simplify with two pseudo-elements and an active state for the middle bar */
+.profile .toggle-btn::before {
+  box-shadow: 0 0 0 var(--black-30); /* This creates the middle bar effect */
+}
+
+/* Nav items and social accounts common styles */
+.site-nav-item,
+.social-account {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-radius: 8px;
+  background-color: var(--white-97);
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.3s ease-out,
+    transform 0.3s ease-out; /* Added opacity and transform */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-nav-item:hover,
+.social-account:hover {
+  background-color: var(--white-90);
+}
+
+.site-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  /* Initial state for transition */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+nav hr {
+  border: none;
+  border-top: 1px solid var(--white-90);
+  margin: 0.8rem 0;
+  transition: opacity 0.3s ease-out; /* Transition for the hr */
+}
+
+.social-accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  /* Initial state for transition */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- MAIN ---------- */
+main {
+  grid-area: main;
+  margin-top: 1rem; /* Aligns with nav's top */
+  background-color: antiquewhite; /* Debugging */
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+main h1 {
+  margin-bottom: 1rem;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  grid-area: footer;
+  background-color: green; /* Debugging */
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  max-height: 64px; /* Consider if this max-height is always desired */
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white-100);
+  font-size: 0.85rem;
+}
