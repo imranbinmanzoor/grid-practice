@@ -2,10 +2,8 @@
   /* Body Layout for Mobile */
   body {
     grid-template-columns: 1fr; /* Single column */
-    grid-template-rows: auto auto 1fr auto; /* Nav, Main, Main, Footer */
+    grid-template-rows: 1fr auto; /* Nav, Main, Main, Footer */
     grid-template-areas:
-      "nav"
-      "main"
       "main"
       "footer";
     column-gap: 0; /* Remove gap between grid items on mobile to have full width for nav/main */
@@ -22,7 +20,7 @@
     overflow: hidden; /* Hides content when collapsed */
     z-index: 1000; /* Ensures nav is on top of other content */
     /* Transitions are already on nav in style.css */
-    border: 2px solid green;
+    /* border: 2px solid green; */
   }
 
   .profile .toggle-btn {
@@ -44,7 +42,7 @@
     height: calc(
       100vh - 2rem
     ); /* Expands to full viewport height minus padding */
-    overflow-y: auto; /* Allow scrolling for expanded content */
+    overflow-y: hidden; /* Scrolling for expanded content */
     /* Remove any animation properties here, as transitions handle it */
   }
 
@@ -67,7 +65,7 @@
   main {
     /* Adjusted margin-top to account for fixed nav */
     margin-top: calc(
-      64px + 2rem + 1rem
+      64px + 2rem + 2rem
     ); /* Nav height + nav top/bottom padding + gap */
     /* When nav expands, it will overlay main content. If you want main to push down,
        you'd need JS to dynamically set main's margin-top based on expanded nav height.

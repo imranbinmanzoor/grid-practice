@@ -54,7 +54,7 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 240px 1fr; /* Default desktop layout */
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 1fr auto;
   grid-template-areas:
     "nav main"
     "nav footer";
@@ -98,7 +98,6 @@ nav .profile .pic {
   height: 48px;
   width: 48px;
   border-radius: 999px; /* Makes it a perfect circle */
-  background: blue; /* Placeholder background */
 }
 
 .profile .pic img {
@@ -149,6 +148,7 @@ nav .profile .pic {
   transform: translate(-50%, -50%);
   width: 70%;
   height: 2px;
+  border-radius: 999px;
   background-color: var(--black-30);
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
@@ -168,31 +168,72 @@ nav .profile .pic {
   box-shadow: 0 0 0 var(--black-30); /* This creates the middle bar effect */
 }
 
-/* Nav items and social accounts common styles */
-.site-nav-item,
-.social-account {
-  display: flex;
+/* Nav items styles */
+.site-nav-item {
+  display: grid;
+  grid-template-columns: 24px 1fr 16px;
   align-items: center;
-  padding-left: 1rem;
+  column-gap: 0.8rem;
+  padding: 0.8rem 1rem;
   border-radius: 8px;
-  background-color: var(--white-97);
+  background-color: var(--white-100);
   cursor: pointer;
-  transition: background-color 0.2s ease, opacity 0.3s ease-out,
+  transition: background-color 0.3s ease, opacity 0.3s ease-out,
     transform 0.3s ease-out; /* Added opacity and transform */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+  position: relative;
 }
 
-.site-nav-item:hover,
-.social-account:hover {
-  background-color: var(--white-90);
+.site-nav-item.site-nav-item-active {
+  background-color: var(--white-97);
+  font-weight: 600;
+  color: var(--black-0);
+}
+
+.site-nav-item.site-nav-item-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  background: var(--black-0);
+  border-radius: 100px;
+  transition: top 0.2s, bottom 0.2s;
+}
+
+.site-nav-item.site-nav-item-active .right-arrow {
+  visibility: hidden;
+}
+
+.site-nav-item:hover {
+  background-color: var(--white-97);
+}
+
+.site-nav-item-icon {
+  height: 24px;
+  width: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  height: 16px;
+  width: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  justify-self: flex-end;
 }
 
 .site-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.8rem;
   /* Initial state for transition */
   opacity: 1;
   transform: translateY(0);
@@ -208,10 +249,37 @@ nav hr {
 .social-accounts {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.2rem;
   /* Initial state for transition */
   opacity: 1;
   transform: translateY(0);
+}
+
+.social-account {
+  display: grid;
+  grid-template-columns: 24px 1fr 16px;
+  align-items: center;
+  column-gap: 0.8rem;
+  font-size: 0.85rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background-color: var(--white-100);
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease-out,
+    transform 0.3s ease-out; /* Added opacity and transform */
+}
+
+.social-account:hover {
+  background-color: var(--white-97);
+}
+
+.social-account-icon {
+  height: 16px;
+  width: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ---------- MAIN ---------- */
@@ -220,7 +288,6 @@ main {
   margin-top: 1rem; /* Aligns with nav's top */
   background-color: antiquewhite; /* Debugging */
   border-radius: 12px;
-  padding: 1.5rem;
 }
 
 main h1 {
