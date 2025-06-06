@@ -177,6 +177,8 @@ nav .profile .pic {
   padding: 0.8rem 1rem;
   border-radius: 8px;
   background-color: var(--white-100);
+  text-decoration: none;
+  color: var(--black-0)
   cursor: pointer;
   transition: background-color 0.3s ease, opacity 0.3s ease-out,
     transform 0.3s ease-out; /* Added opacity and transform */
@@ -264,6 +266,8 @@ nav hr {
   padding: 0.8rem 1rem;
   border-radius: 8px;
   background-color: var(--white-100);
+  text-decoration: none;
+  color: var(--black-0)
   cursor: pointer;
   transition: background-color 0.3s ease, opacity 0.3s ease-out,
     transform 0.3s ease-out; /* Added opacity and transform */
