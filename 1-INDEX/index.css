@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+   font-family: "Segoe UI", sans-serif;
 }
 
 /* Root Variables for Colors */
@@ -50,7 +51,6 @@
 /* Body Layout */
 body {
   background-color: var(--white-97);
-  font-family: "Segoe UI", sans-serif;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 240px 1fr; /* Default desktop layout */
@@ -79,6 +79,7 @@ nav {
   /* Transition for smooth mobile expansion/collapse */
   transition: height 0.3s ease-out, width 0.3s ease-out, top 0.3s ease-out,
     left 0.3s ease-out, transform 0.3s ease-out; /* Added transform for potential future use */
+  box-shadow: 0 4px 12px rgba(var(--black-0-rgb), 0.1);
 }
 
 nav .profile {
@@ -290,12 +291,134 @@ nav hr {
 main {
   grid-area: main;
   margin-top: 1rem; /* Aligns with nav's top */
-  background-color: antiquewhite; /* Debugging */
   border-radius: 12px;
+  padding: 1rem 1rem 0 1rem;
 }
 
-main h1 {
-  margin-bottom: 1rem;
+.main-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 
+  "main-top-heading main-top-a-and-c"
+  "main-top-para main-top-para";
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.main-top h1 {
+  grid-area: main-top-heading;
+
+  line-height: 1.2;
+}
+
+.main-top .available-and-contact {
+  grid-area: main-top-a-and-c;
+
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.available {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.available .green-ind {
+  height: 6px;
+  width: 6px;
+  background-color: var(--green-35);
+  border-radius: 999px;
+}
+
+.btn {
+  background-color: var(--black-0);
+  font-size: 1rem;
+  font-weight: 600;
+  height: 40px;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn a {
+  color: var(--white-100);
+  text-decoration: none;
+  letter-spacing: 0.85px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Contact button for mobile devices */
+.top-contact-btn-mobile {
+  display: none !important;
+  align-self: end;
+  height: 40px;
+  width: 40px;
+  padding: 0.6rem 1.2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99999;
+  box-shadow: 0 12px 24px rgba(var(--black-0-rgb), 0.25);
+}
+
+.top-contact-btn-mobile a {
+  color: var(--white-100);
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.top-contact-btn-mobile a img {
+  height: 24px;
+  width: 24px;
+}
+
+.main-top p {
+  grid-area: main-top-para;
+
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: var(--black-30)
+}
+
+.sections {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.section-1 {
+  background-color: aquamarine;
+}
+
+.section-2 {
+  background-color: violet;
+}
+
+.section-3 {
+  background-color: brown;
+}
+
+.section-4 {
+  background-color: var(--white-100);
 }
 
 /* ---------- FOOTER ---------- */

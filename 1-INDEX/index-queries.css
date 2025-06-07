@@ -70,6 +70,23 @@
     /* When nav expands, it will overlay main content. If you want main to push down,
        you'd need JS to dynamically set main's margin-top based on expanded nav height.
        For a cleaner CSS approach, overlay is standard for mobile menus. */
+    padding: 0 0.4rem;
+  }
+
+  .main-top .available-and-contact {
+    flex-direction: column;
+  }
+
+  .available {
+    display: none;
+  }
+
+  .top-contact-btn {
+    display: none !important;
+  }
+
+  .top-contact-btn-mobile {
+    display: flex !important;
   }
 
   /* ---------- FOOTER MOBILE STYLES ---------- */
