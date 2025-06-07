@@ -83,32 +83,32 @@ nav {
   scrollbar-width: none;
 }
 
-/* nav::-webkit-scrollbar {
-  display: none;
-} */
-
 nav .profile {
   width: 100%;
+  height: 72px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     "pic name toggle-btn"
-    "pic tagline toggle-btn";
+    "pic tagline-1 toggle-btn"
+    "pic tagline-2 toggle-btn";
   align-items: center; /* Vertically aligns items in their rows */
-  column-gap: 0.4rem;
+  place-content: center;
+  column-gap: 0.8rem;
   padding: 0.2rem 0; /* Vertical padding for profile content */
+  margin-bottom: 12px;
 }
 
 nav .profile .pic {
   grid-area: pic;
-  height: 48px;
-  width: 48px;
+  height: 64px;
+  width: 64px;
   border-radius: 999px; /* Makes it a perfect circle */
 }
 
 .profile .pic img {
-  height: 48px;
-  width: 48px;
+  height: 64px;
+  width: 64px;
   border-radius: 999px;
 }
 
@@ -120,10 +120,20 @@ nav .profile .pic {
   white-space: nowrap; /* Prevents text from wrapping prematurely */
   overflow: hidden; /* Hides overflowing text */
   text-overflow: ellipsis; /* Adds "..." for overflowing text */
+  margin-bottom: 0.2rem;
 }
 
-.profile .tagline {
-  grid-area: tagline;
+.profile .tagline-1 {
+  grid-area: tagline-1;
+  font-size: 0.85rem;
+  align-self: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile .tagline-2 {
+  grid-area: tagline-2;
   font-size: 0.85rem;
   align-self: start;
   white-space: nowrap;
@@ -238,6 +248,21 @@ nav .profile .pic {
   justify-self: flex-end;
 }
 
+.site-nav-item.site-nav-item-active .arrow {
+  visibility: hidden;
+}
+
+.site-nav-item .arrow {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.site-nav-item:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .site-nav {
   display: flex;
   flex-direction: column;
@@ -281,6 +306,21 @@ nav hr {
 
 .social-account:hover {
   background-color: var(--white-97);
+}
+
+/* .social-account .arrow {
+  visibility: hidden;
+} */
+
+.social-account .arrow {
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.social-account:hover .arrow {
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 .social-account-icon {

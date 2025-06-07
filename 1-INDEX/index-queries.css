@@ -16,7 +16,7 @@
     top: 1rem;
     left: 1rem; /* Aligns with body padding */
     width: calc(100vw - 2rem); /* Matches body width */
-    height: calc(64px + 2rem); /* Collapsed height (profile height + padding) */
+    height: calc(72px + 2rem); /* Collapsed height (profile height + padding) */
     overflow-y: hidden;
     z-index: 1000; /* Ensures nav is on top of other content */
     /* Transitions are already on nav in style.css */
