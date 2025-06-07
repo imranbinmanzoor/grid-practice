@@ -80,7 +80,12 @@ nav {
   transition: height 0.3s ease-out, width 0.3s ease-out, top 0.3s ease-out,
     left 0.3s ease-out, transform 0.3s ease-out; /* Added transform for potential future use */
   box-shadow: 0 4px 12px rgba(var(--black-0-rgb), 0.1);
+  scrollbar-width: none;
 }
+
+/* nav::-webkit-scrollbar {
+  display: none;
+} */
 
 nav .profile {
   width: 100%;
